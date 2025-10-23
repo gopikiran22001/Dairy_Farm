@@ -10,7 +10,7 @@ const server = express();
 server.use(express.json());
 
 const corsOptions = {
-  origin: "http://localhost:5173",
+  origin: "https://splendorous-bunny-c5929a.netlify.app",
   exposedHeaders: "authorization",
   credentials: true
 };
