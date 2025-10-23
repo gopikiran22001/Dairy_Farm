@@ -44,10 +44,10 @@ export default function Choose() {
                             <Link to="/auth" state={{user: "customer"}}>
                                 <div className="card">
                                     <div className="wrapper">
-                                        <img src="/src/assets/images/v1.png" className="cover-image" />
+                                        <img src="/assets/images/v1.png" className="cover-image" />
                                     </div>
-                                    <img src="/src/assets/images/v9.png" className="title" />
-                                    <img src="src/assets/images/c16.png" className="character" />
+                                    <img src="/assets/images/v9.png" className="title" />
+                                    <img src="/assets/images/c16.png" className="character" />
                                 </div>
                             </Link>
                         </Grid>
@@ -55,10 +55,10 @@ export default function Choose() {
                             <Link to="/auth" state={{ user: "vendor" }}>
                                 <div className="card">
                                     <div className="wrapper">
-                                        <img src="/src/assets/images/c14.png" className="cover-image" />
+                                        <img src="/assets/images/c14.png" className="cover-image" />
                                     </div>
-                                    <img src="/src/assets/images/v2.png" className="title" />
-                                    <img src="/src/assets/images/c15.png" className="character" />
+                                    <img src="/assets/images/v2.png" className="title" />
+                                    <img src="/assets/images/c15.png" className="character" />
                                 </div>
                             </Link>
                         </Grid>

@@ -63,8 +63,10 @@ function VendorScreen() {
     const navigate = useNavigate();
     useEffect(() => {
         async function fetchData() {
-            if (setToken())
-                navigate('/')
+            if (setToken()) {
+                navigate('/');
+                return;
+            }
             try {
                 const response = await axios.get(Root() + 'vendor');
                 console.log(response.data);
@@ -124,8 +126,10 @@ function CustomerScreen() {
 
     useEffect(() => {
         async function fetchData() {
-            if (setToken())
-                navigate('/')
+            if (setToken()) {
+                navigate('/');
+                return;
+            }
             try {
                 const response = await axios.get(Root() + 'customer');
                 console.log(response.data.customer)
