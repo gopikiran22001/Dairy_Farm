@@ -10,7 +10,9 @@ const server = express();
 server.use(express.json());
 
 const corsOptions = {
+  origin: "http://localhost:5173",
   exposedHeaders: "authorization",
+  credentials: true
 };
 server.use(cors(corsOptions));
 server.options("*", cors());
