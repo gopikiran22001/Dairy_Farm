@@ -21,7 +21,7 @@ export default function VendorSignUp() {
         const data = new FormData(event.currentTarget)
 
         try {
-            const url = "http://localhost:5000/api/vendor/register"
+            const url = Root() + "vendor/register"
             const details = {
                 first_name: data.get('firstname'),
                 last_name: data.get('lastname'),

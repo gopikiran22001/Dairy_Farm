@@ -14,6 +14,7 @@ import ModalDialog from '@mui/joy/ModalDialog';
 import axios from 'axios'
 import {useRecoilState} from "recoil";
 import {userAtom} from "../../atoms/user.jsx";
+import Root from "../../url";
 
 export default function SignIn() {
     const [user, setUser] = useRecoilState(userAtom)
@@ -38,7 +39,7 @@ export default function SignIn() {
         handleload()
         const data = new FormData(event.currentTarget)
         try {
-            const url = "http://localhost:5000/api/customer/login"
+            const url = Root() + "customer/login"
             const details = {
                 emailID: data.get('email'),
                 password: data.get('password')

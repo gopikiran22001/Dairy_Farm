@@ -8,6 +8,7 @@ import Breadcrumbs from '@mui/joy/Breadcrumbs';
 import Link from '@mui/joy/Link';
 import useScript from '../../utils/useScript';
 import axios from 'axios';
+import Root from '../../url';
 
 const useEnhancedEffect =
   typeof window !== 'undefined' ? React.useLayoutEffect : React.useEffect;
@@ -31,7 +32,7 @@ export default function MySubsList() {
     React.useEffect(() => {
         const getData = async () => {
             try {
-                const url = "http://localhost:5000/api/customer/getSubs"
+                const url = Root() + "customer/getSubs"
                 const res = await axios.get(url)
                 if (res.status === 200) {
                     setData(res.data.subscriptions)
@@ -48,7 +49,7 @@ export default function MySubsList() {
 
     const handleDelete = async (id) => {
         try {
-            const url = "http://localhost:5000/api/customer/removeSub"
+            const url = Root() + "customer/removeSub"
             const details = {subscription: id}
             const res = await axios.post(url, details)
             if (res.status === 200) {

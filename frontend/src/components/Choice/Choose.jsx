@@ -4,6 +4,7 @@ import Grid from '@mui/joy/Grid';
 import { Link, useNavigate} from "react-router-dom"
 import {setToken} from "../../utils/checkToken.jsx";
 import axios from "axios";
+import Root from '../../url';
 
 export default function Choose() {
     const navigate = useNavigate();
@@ -12,7 +13,7 @@ export default function Choose() {
         async function fetchData() {
             if (!setToken()) {
                 try {
-                    const response = await axios.get('http://localhost:5000/api/general');
+                    const response = await axios.get(Root() + 'general');
                     console.log("general",  response.data);
 
                     const type = response.data.userType;

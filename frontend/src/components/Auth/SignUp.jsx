@@ -99,7 +99,7 @@ export default function SignUp() {
         handleload()
 
         try {
-            const url ="http://localhost:5000/api/customer/register"
+            const url = Root() + "customer/register"
             const details = {
                 first_name: data.get('firstname'),
                 last_name: data.get('lastname'),

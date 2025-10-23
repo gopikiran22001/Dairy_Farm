@@ -7,6 +7,7 @@ import updateField from "../../utils/updateField";
 import {Link} from "react-router-dom";
 import * as url from "url";
 import axios from "axios";
+import Root from '../../url';
 import Sheet from "@mui/joy/Sheet";
 import ColorSchemeToggle from "../Navbar/ColorSchemeToggle.tsx";
 import * as React from "react";
@@ -38,7 +39,7 @@ export default function CustomerProfile() {
 
         async function updateCustomer() {
             try {
-                const url = 'http://localhost:5000/api/customer';
+                const url = Root() + 'customer';
                 const res = await axios.patch(url, formData);
                 setLoading(false);
                 alert("customer updated.");

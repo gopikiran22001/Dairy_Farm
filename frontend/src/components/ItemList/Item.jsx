@@ -9,6 +9,7 @@ import Link from '@mui/joy/Link';
 import Favorite from '@mui/icons-material/Favorite';
 import ShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import axios from 'axios';
+import Root from '../../url';
 import Button from '@mui/joy/Button';
 import FormControl from '@mui/joy/FormControl';
 import FormLabel from '@mui/joy/FormLabel';
@@ -50,7 +51,7 @@ export default function MultipleInteractionCard(props) {
         }
         console.log(props)
         try {
-            const url = "http://localhost:5000/api/customer/addToCart"
+            const url = Root() + "customer/addToCart"
             const details = {
                 product: props.item._id,
                 daily_quantity: count,

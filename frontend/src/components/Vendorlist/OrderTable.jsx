@@ -25,6 +25,7 @@ import DoneIcon from '@mui/icons-material/Done';
 import CloseIcon from '@mui/icons-material/Close';
 
 import axios from "axios"
+import Root from '../../url';
 import Fuse from 'fuse.js';
 
 
@@ -141,7 +142,7 @@ export default function OrderTable() {
     const getData = async () => {
       let things = []
       try {
-        const url = "http://localhost:5000/api/customer/getVendors"
+        const url = Root() + "customer/getVendors"
         const res = await axios.get(url)
         if (res.status === 200) {
           for (let i = 0; i < res.data.vendors.length; i++) {

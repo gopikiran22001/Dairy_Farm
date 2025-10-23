@@ -25,6 +25,7 @@ import UpdateProduct from "./UpdateProduct.jsx";
 import {productsAtom} from "../../atoms/products.jsx";
 import {Fragment, useEffect, useState} from "react";
 import axios from "axios";
+import Root from '../../url';
 import Fuse from "fuse.js";
 
 
@@ -79,7 +80,7 @@ export default function InventoryTable() {
         async function fetchProducts() {
             try {
                 const response = await
-                    axios.post("http://localhost:5000/api/general/getProducts", {});
+                    axios.post(Root() + "general/getProducts", {});
                 console.log(response.data)
                 setRows(response.data.products);
                 return "success";
@@ -126,7 +127,7 @@ export default function InventoryTable() {
             }
 
             const response = await
-                axios.post("http://localhost:5000/api/vendor/removeProduct", {
+                axios.post(Root() + "vendor/removeProduct", {
                     id: row._id
                 });
             setRows(rows.filter(r => r._id !== row._id));

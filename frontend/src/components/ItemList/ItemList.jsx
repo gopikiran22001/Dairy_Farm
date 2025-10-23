@@ -22,6 +22,7 @@ import ListItemButton from '@mui/joy/ListItemButton';
 import ListItemContent from '@mui/joy/ListItemContent';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import Root from '../../url';
 
 // Icons import
 import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
@@ -86,7 +87,7 @@ export default function FilesExample() {
   React.useEffect(() => {
     const getData = async () => {
       try {
-        const url = "http://localhost:5000/api/general/getProducts"
+        const url = Root() + "general/getProducts"
         const details = {vendor: id}
         const res = await axios.post(url, details)
         if (res.status === 200) {
@@ -166,7 +167,6 @@ React.useEffect(() => {
         </Layout.Header>
         <Sheet
           sx={{
-            display: { xs: 'none', sm: 'initial' },
             display: 'initial',
             borderLeft: '1px solid',
             borderColor: 'neutral.outlinedBorder',

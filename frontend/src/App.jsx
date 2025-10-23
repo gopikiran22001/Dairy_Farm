@@ -3,6 +3,7 @@ import {Routes, Route, Navigate, useNavigate} from "react-router-dom";
 import Auth from './components/Auth/Auth';
 import Verify from './Verify'
 import Choose from './components/Choice/Choose';
+import Root from './url';
 import VendorProfile from "./components/Profile/VendorProfile.jsx";
 import CustomerProfile from "./components/Profile/CustomerProfile.jsx";
 import ItemList from "./components/ItemList/ItemList";
@@ -65,7 +66,7 @@ function VendorScreen() {
             if (setToken())
                 navigate('/')
             try {
-                const response = await axios.get('http://localhost:5000/api/vendor');
+                const response = await axios.get(Root() + 'vendor');
                 console.log(response.data);
                 setUser(response.data.vendor);
             } catch {
@@ -126,7 +127,7 @@ function CustomerScreen() {
             if (setToken())
                 navigate('/')
             try {
-                const response = await axios.get('http://localhost:5000/api/customer');
+                const response = await axios.get(Root() + 'customer');
                 console.log(response.data.customer)
                 setUser({...user, ...response.data.customer});
             } catch {

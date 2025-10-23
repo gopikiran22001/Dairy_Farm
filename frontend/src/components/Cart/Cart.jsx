@@ -1,5 +1,6 @@
 import * as React from 'react';
 import axios from 'axios';
+import Root from '../../url';
 
 import { CssVarsProvider, useColorScheme } from '@mui/joy/styles';
 import CssBaseline from '@mui/joy/CssBaseline';
@@ -65,7 +66,7 @@ export default function FilesExample() {
     let cost = a - (a * b / 100)
     let totalCost = cost * product.daily_quantity * product.days.length
     try {
-      const url = "http://localhost:5000/api/customer/updateCart"
+      const url = Root() + "customer/updateCart"
 
       const details = {
         product: product.product._id,
@@ -194,7 +195,7 @@ export default function FilesExample() {
 
   async function handleAddSubscription(){
     try {
-      const url = "http://localhost:5000/api/customer/addSub"
+      const url = Root() + "customer/addSub"
 
       for (let i = 0; i < cartdata.length; i++) {
         if (cartdata[i].checkStat && cartdata[i].days.length > 0){
@@ -219,7 +220,7 @@ export default function FilesExample() {
   React.useEffect(() => {
     const getData = async () => {
       try {
-        const url = "http://localhost:5000/api/customer/getCart"
+        const url = Root() + "customer/getCart"
         const res = await axios.get(url)
         if (res.status === 200) {
           let totalprice = 0;

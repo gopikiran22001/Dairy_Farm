@@ -13,6 +13,7 @@ import {useRecoilState} from "recoil";
 import {userAtom} from "../../atoms/user.jsx";
 import {useEffect, useState} from "react";
 import axios from "axios";
+import Root from '../../url';
 import Fuse from "fuse.js";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
@@ -102,7 +103,7 @@ export default function VendorSubscriptionsTable() {
     useEffect(() => {
         async function fetchData() {
             const response =
-                await axios.get('http://localhost:5000/api/vendor/getSubs');
+                await axios.get(Root() + 'vendor/getSubs');
 
             setRows(response.data.subscriptions);
             console.log(response.data.subscriptions);

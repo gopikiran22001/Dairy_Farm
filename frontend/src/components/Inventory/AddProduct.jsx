@@ -14,6 +14,7 @@ import {useRecoilState} from "recoil";
 import {userAtom} from "../../atoms/user.jsx";
 import {productsAtom} from "../../atoms/products.jsx";
 import axios from "axios";
+import Root from '../../url';
 
 export default function AddProduct(props) {
     const [products, setProducts] = useRecoilState(productsAtom);
@@ -45,10 +46,10 @@ export default function AddProduct(props) {
 
         async function addProduct() {
             const response = await
-                axios.post('http://localhost:5000/api/vendor/addProduct', formData);
+                axios.post(Root() + 'vendor/addProduct', formData);
 
             const newProductsResponse = await
-                axios.post('http://localhost:5000/api/general/getProducts', {});
+                axios.post(Root() + 'general/getProducts', {});
 
             setProducts(newProductsResponse.data.products);
         }

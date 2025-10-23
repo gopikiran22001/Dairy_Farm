@@ -10,6 +10,7 @@ import {useLocation, useNavigate} from 'react-router-dom';
 import axios from 'axios'
 import {useRecoilState} from "recoil";
 import {userAtom} from "../../atoms/user"
+import Root from "../../url"
 
 export default function VendorSignIn() {
     const [user, setUser] = useRecoilState(userAtom);
@@ -20,7 +21,7 @@ export default function VendorSignIn() {
         event.preventDefault()
         const data = new FormData(event.currentTarget)
         try {
-            const url = "http://localhost:5000/api/vendor/login"
+            const url = Root() + "vendor/login"
             const details = {
                 emailID: data.get('email'),
                 password: data.get('password')

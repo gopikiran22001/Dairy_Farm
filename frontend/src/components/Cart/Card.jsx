@@ -22,6 +22,7 @@ import Divider from '@mui/joy/Divider';
 import IconButton from '@mui/joy/IconButton';
 import { Alert } from '@mui/joy';
 import axios from 'axios';
+import Root from '../../url';
 
 export default function InteractiveCard(props) {
   const [count, setCount] = React.useState(props.item.daily_quantity);
@@ -41,7 +42,7 @@ export default function InteractiveCard(props) {
   async function handleCountAdd(){
     setEditting(true)
         try {
-          const url = "http://localhost:5000/api/customer/updateCart"
+          const url = Root() + "customer/updateCart"
           const details = {product: props.item.product._id,
              days: props.item.days,
              daily_quantity: count + 1,
@@ -72,7 +73,7 @@ export default function InteractiveCard(props) {
       
 
         try {
-          const url = "http://localhost:5000/api/customer/updateCart"
+          const url = Root() + "customer/updateCart"
 
           const details = {product: props.item.product._id,
              days: props.item.days,
@@ -107,7 +108,7 @@ export default function InteractiveCard(props) {
     setEditting(true)
       
     try {
-      const url = "http://localhost:5000/api/customer/removeFromCart"
+      const url = Root() + "customer/removeFromCart"
 
       const details = {product: props.item.product._id
         }
@@ -173,7 +174,7 @@ props.delete(props.item.product._id)
       setOpen2(false)
 
     try {
-      const url = "http://localhost:5000/api/customer/updateCart"
+      const url = Root() + "customer/updateCart"
       const details = {product: props.item.product._id, 
         daily_quantity: props.item.daily_quantity,
         startDate: props.item.startDate,

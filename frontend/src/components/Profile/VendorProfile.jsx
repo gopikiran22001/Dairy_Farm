@@ -7,6 +7,7 @@ import updateField from "../../utils/updateField";
 import {Link} from "react-router-dom";
 import * as url from "url";
 import axios from "axios";
+import Root from '../../url';
 import Sheet from "@mui/joy/Sheet";
 import ColorSchemeToggle from "../Navbar/ColorSchemeToggle.tsx";
 import * as React from "react";
@@ -67,7 +68,7 @@ export default function VendorProfile() {
 
         async function updateVendor() {
             try {
-                const url = 'http://localhost:5000/api/vendor';
+                const url = Root() + 'vendor';
                 const res = await axios.patch(url, formData);
                 setUser(formData);
                 setLoading(false);
