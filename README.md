@@ -1,35 +1,57 @@
-# DASS Team Project - Team 32
+# Dairy Farm Management System - FSD Project
 
-This is the repository for DASS 2k23 project - `SaaS MERN app for dairy farmers`. A full stack app with two types of users - `customer` and `vendor`. Made for Dasvande Technologies, client - Vaidyanath Bobbili.
+A full-stack MERN application for managing dairy farm operations with separate interfaces for customers and vendors.
 
 ## Team Members:
-- Arnav Negi
-- Prakul Agarwal
-- Srihitha Mallepally
-- Vedanivas Chowdary
+- Pavithra Lakshmi
+- Rohini
+- Harika Priya
+- Bhavani
+
+## Project Overview:
+This web application connects dairy farmers (vendors) with customers, enabling product subscriptions, inventory management, and automated delivery scheduling.
 
 ## Tech Stack:
-- **Frontend**: React.js with MUI Joy UI
-- **Backend**: Node.js with Express.js
+- **Frontend**: React.js, MUI Joy UI, Recoil (State Management)
+- **Backend**: Node.js, Express.js
 - **Database**: MongoDB with Mongoose ODM
 - **Authentication**: JWT (JSON Web Tokens)
-- **Password Hashing**: bcryptjs
-- **Development**: Nodemon for auto-restart
+- **Security**: bcryptjs for password hashing
 
-## Features:
-- **Customer Features**: Registration, Login, Browse vendors, Add products to cart, Subscribe to products
-- **Vendor Features**: Registration, Login, Manage products, View subscriptions, Dairy farm management
-- **Authentication**: JWT-based secure authentication
-- **Real-time**: Farm opening/closing status based on time
+## Key Features:
 
-## Prerequisites:
-- Node.js (v14 or higher)
-- MongoDB (local installation or MongoDB Atlas)
-- npm or yarn package manager
+### Customer Portal:
+- User registration and authentication
+- Browse available dairy vendors
+- View vendor details (location, timings, products)
+- Add products to cart with customizable delivery schedules
+- Subscribe to products for recurring deliveries
+- Manage subscriptions and cart
+- Profile management
+
+### Vendor Portal:
+- Vendor registration and authentication
+- Dairy farm profile setup (name, timings, working days)
+- Product inventory management (add, update, remove)
+- View and manage customer subscriptions
+- Track product quantities and availability
+- Bank account information for payments
+
+### System Features:
+- Real-time farm status (open/closed) based on operating hours
+- Quantity management to prevent overbooking
+- Weekly subscription scheduling
+- Secure JWT-based authentication
+- Responsive design for all devices
 
 ## Installation & Setup:
 
-### 1. Clone the repository:
+### Prerequisites:
+- Node.js (v14+)
+- MongoDB (local or Atlas)
+- npm/yarn
+
+### 1. Clone Repository:
 ```bash
 git clone <repository-url>
 cd MERN-Dairy-Farm-WebApp
@@ -41,106 +63,126 @@ cd backend
 npm install
 ```
 
-### 3. Environment Configuration:
-Update the `.env` file in the backend folder with your configuration:
+Create `.env` file in backend folder:
 ```env
-MONGODBURI=mongodb://localhost:27017/dairy-farm-db
+MONGODBURI=your_mongodb_connection_string
 PORT=5000
-SECRETKEY=your-secret-key-here
+SECRETKEY=your_jwt_secret_key
 SALT=10
 ```
 
-### 4. Frontend Setup:
+### 3. Frontend Setup:
 ```bash
 cd ../frontend
 npm install
 ```
 
-## Running the Application:
+### 4. Run Application:
 
-### 1. Start MongoDB:
-Ensure MongoDB is running on your system
-
-### 2. Start Backend Server:
+**Terminal 1 - Backend:**
 ```bash
 cd backend
 npm run dev
 ```
-Backend will run on `http://localhost:5000`
 
-### 3. Start Frontend Server:
+**Terminal 2 - Frontend:**
 ```bash
 cd frontend
 npm run dev
 ```
-Frontend will run on `http://localhost:5173`
 
-### 4. Access the Application:
-Open your browser and navigate to `http://localhost:5173`
+Access at: `http://localhost:5173`
 
-## API Endpoints:
+## Project Structure:
 
-### Customer Routes (`/api/customer`):
-- `POST /register` - Customer registration
-- `POST /login` - Customer login
-- `GET /` - Get customer profile
-- `PATCH /` - Update customer profile
-- `POST /addToCart` - Add product to cart
-- `POST /removeFromCart` - Remove product from cart
-- `POST /updateCart` - Update cart item
-- `POST /addSub` - Add subscription
-- `POST /removeSub` - Remove subscription
-- `GET /getSubs` - Get customer subscriptions
-- `GET /getCart` - Get customer cart
-- `GET /getVendors` - Get all vendors
+```
+MERN-Dairy-Farm-WebApp/
+├── backend/
+│   ├── controllers/     # Business logic
+│   ├── models/          # MongoDB schemas
+│   ├── routes/          # API endpoints
+│   ├── middleware/      # Auth middleware
+│   ├── .env            # Environment variables
+│   └── server.js       # Entry point
+├── frontend/
+│   ├── src/
+│   │   ├── components/ # React components
+│   │   ├── atoms/      # Recoil state
+│   │   ├── utils/      # Helper functions
+│   │   ├── assets/     # Images, themes
+│   │   └── App.jsx     # Main component
+│   └── public/         # Static assets
+└── README.md
+```
 
-### Vendor Routes (`/api/vendor`):
-- `POST /register` - Vendor registration
-- `POST /login` - Vendor login
-- `GET /` - Get vendor profile
-- `PATCH /` - Update vendor profile
-- `POST /addProduct` - Add new product
-- `POST /removeProduct` - Remove product
-- `PATCH /updateProduct` - Update product
-- `GET /getSubs` - Get vendor subscriptions
+## Database Schema:
 
-### General Routes (`/api/general`):
-- `GET /` - Get user type
-- `POST /getProducts` - Get products by vendor
+### Customer Model:
+- first_name, last_name, emailID, password
+- phoneNumber, address
+- cart: [{ product, daily_quantity, days, startDate }]
+- subscriptions: [Subscription references]
 
-## Database Models:
+### Vendor Model:
+- first_name, last_name, emailID, password
+- phoneNumber, address
+- dairyFarm: { name, openingHours, closingHours, establishedDate }
+- workingDays: [String]
+- account: { holderName, bankName, IFSC, accountNumber }
+- products: [Product references]
+- subscriptions: [Subscription references]
 
-### Customer:
-- Personal information (name, email, phone, address)
-- Cart items with product references
-- Subscription references
+### Product Model:
+- name, description, price, discount
+- weeklyQuantity, usedQuantity
+- vendor: Vendor reference
 
-### Vendor:
-- Personal information
-- Dairy farm details (name, hours, working days)
-- Bank account information
-- Product and subscription references
+### Subscription Model:
+- product: Product reference
+- customer: Customer reference
+- daily_quantity, startDate
+- days: [String]
 
-### Product:
-- Product details (name, description, price, discount)
-- Quantity management (weekly quantity, used quantity)
-- Vendor reference
+## API Documentation:
 
-### Subscription:
-- Product and customer references
-- Delivery schedule (days, quantity, start date)
+### Customer APIs:
+- POST `/api/customer/register` - Register new customer
+- POST `/api/customer/login` - Customer login
+- GET `/api/customer/` - Get profile (Auth required)
+- PATCH `/api/customer/` - Update profile (Auth required)
+- POST `/api/customer/addToCart` - Add to cart (Auth required)
+- POST `/api/customer/removeFromCart` - Remove from cart (Auth required)
+- POST `/api/customer/updateCart` - Update cart (Auth required)
+- POST `/api/customer/addSub` - Create subscription (Auth required)
+- POST `/api/customer/removeSub` - Cancel subscription (Auth required)
+- GET `/api/customer/getSubs` - Get subscriptions (Auth required)
+- GET `/api/customer/getCart` - Get cart (Auth required)
+- GET `/api/customer/getVendors` - List all vendors
 
-## Browser Compatibility:
-For best performance, use Chrome or Chromium-based browsers.
+### Vendor APIs:
+- POST `/api/vendor/register` - Register new vendor
+- POST `/api/vendor/login` - Vendor login
+- GET `/api/vendor/` - Get profile (Auth required)
+- PATCH `/api/vendor/` - Update profile (Auth required)
+- POST `/api/vendor/addProduct` - Add product (Auth required)
+- POST `/api/vendor/removeProduct` - Remove product (Auth required)
+- PATCH `/api/vendor/updateProduct` - Update product (Auth required)
+- GET `/api/vendor/getSubs` - Get subscriptions (Auth required)
+
+### General APIs:
+- GET `/api/general/` - Get user type (Auth required)
+- POST `/api/general/getProducts` - Get vendor products (Auth required)
+
+## Security Features:
+- Password hashing with bcrypt
+- JWT token-based authentication
+- Protected routes with auth middleware
+- CORS configuration for secure communication
+- Environment variables for sensitive data
 
 ## Development Notes:
-- Backend uses CORS configuration for frontend communication
-- JWT tokens are used for authentication
-- Real-time farm status based on opening/closing hours
-- Quantity management prevents overbooking
-
-## Troubleshooting:
-- Ensure MongoDB is running before starting the backend
-- Check that ports 5000 and 5173 are available
-- Verify environment variables are correctly set
-- Clear browser cache if experiencing issues
+- Frontend uses Recoil for state management
+- Centralized API base URL in `frontend/src/url.jsx`
+- Images stored in `frontend/public/assets/images/`
+- MUI Joy UI for consistent design
+- Vite for fast development builds
